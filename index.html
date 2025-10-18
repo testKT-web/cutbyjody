@@ -10,33 +10,53 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --radius:16px; --elev:0 10px 30px rgba(0,0,0,.12);
+      --radius:18px; --elev:0 10px 30px rgba(0,0,0,.12);
       --txt:#111; --muted:#555; --bg:#ffffff; --sub:#f8e1ea; --accent:#e84d84; --gold:#b2892f;
-      --men-bg:#0f1115; --men-card:#161922; --men-txt:#e9ecf1; --men-muted:#9aa3af; --men-accent:#3b82f6;
+      --men-bg:#0f1115; --men-grad:#0f1115; --men-grad2:#1a2438; --men-card:#161922; --men-txt:#e9ecf1; --men-muted:#9aa3af;
       --women-bg:#ffffff; --women-sub:#fff7e7; --women-accent:#c7a243; --women-txt:#1a1a1a; --women-muted:#666;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
     body{font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--txt)}
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
+    img,video{max-width:100%;display:block}
     .container{max-width:1200px;margin:0 auto;padding:0 18px}
+
     /* Topbar */
-    .topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.8);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid rgba(0,0,0,.06)}
+    .topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.86);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid rgba(0,0,0,.06)}
     .nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:10px 0}
     .nav a{justify-self:start}
     .nav .right{justify-self:end}
     .logo{
       width:64px;height:64px;border-radius:50%;
-      background:
-        radial-gradient(circle at 30% 30%,rgba(255,255,255,.8),rgba(255,255,255,.4)),
-        linear-gradient(135deg,#fbeaf0,#ffd4e2);
-      border:2px solid rgba(0,0,0,.07);
-      box-shadow:0 8px 18px rgba(232,77,132,.25), inset 0 0 0 4px rgba(255,255,255,.7);
-      display:grid;place-items:center;font-family:"Playfair Display",serif;font-weight:700;color:#111;letter-spacing:.5px
+      display:grid;place-items:center;font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.5px;
+      border:2px solid rgba(0,0,0,.10); cursor:pointer; user-select:none; transition:transform .15s ease, box-shadow .2s ease;
     }
+    .logo:active{transform:scale(.98)}
+    /* Logo themes */
+    [data-theme="rose"] .logo{
+      background:
+        radial-gradient(circle at 30% 30%,rgba(255,255,255,.85),rgba(255,255,255,.65)),
+        linear-gradient(135deg,#f3f3f3,#d9d9d9);
+      color:#111;
+      box-shadow:0 10px 20px rgba(0,0,0,.20), inset 0 0 0 4px rgba(255,255,255,.85);
+    }
+    [data-theme="women"] .logo{
+      background:linear-gradient(135deg,#ffe9f2,#ffd5e6);
+      color:#1a1a1a;
+      box-shadow:0 8px 18px rgba(232,77,132,.35), inset 0 0 0 4px rgba(255,255,255,.95);
+      border-color:rgba(0,0,0,.06);
+    }
+    [data-theme="men"] .logo{
+      background:linear-gradient(135deg,#1b2233,#0f1524);
+      color:#e9ecf1;
+      box-shadow:0 8px 18px rgba(0,0,0,.45), inset 0 0 0 4px rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.12);
+    }
+
     .pill{padding:10px 14px;border-radius:999px;border:1px solid rgba(0,0,0,.08);background:rgba(0,0,0,.03);transition:.2s}
     .pill:hover{transform:translateY(-1px)}
+
     /* Hero */
     .hero{position:relative;overflow:hidden}
     .heroInner{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;padding:36px 0}
@@ -46,61 +66,87 @@
     .btn{padding:12px 16px;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:#fff;box-shadow:var(--elev);transition:.2s}
     .btn.primary{background:linear-gradient(135deg,#ff5f98,#ff9770);color:#fff;border:none}
     .btn.ghost{background:transparent}
-    /* Image card */
+
     .card{border-radius:var(--radius);overflow:hidden;box-shadow:var(--elev);background:#fff;border:1px solid rgba(0,0,0,.06)}
-    .imgCover{aspect-ratio:16/9;background:#eee url('/img/salon-aussen.jpg') center/cover no-repeat}
+    .videoCover{aspect-ratio:16/9;background:#eee;position:relative}
+    .videoCover video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;border-radius:0}
+
     .ribbon{position:absolute;top:16px;left:16px;background:rgba(255,255,255,.9);padding:6px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.06)}
+
     /* Sections */
     section{padding:40px 0}
     h2{font-family:"Playfair Display",serif;font-size:28px;margin:0 0 14px}
     .muted{color:var(--muted)}
     .grid{display:grid;gap:16px}
-    .gallery{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-    .gallery .ph{aspect-ratio:4/3;background:#f3f3f3;border-radius:14px;overflow:hidden}
+
+    /* Gallery mosaic */
+    .gallery{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:14vw;gap:16px}
+    .gallery .tile{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--elev)}
+    .gallery .tile img{width:100%;height:100%;object-fit:cover}
+    /* layout: 6 images in mosaic */
+    .tile.span2x2{grid-column:span 3;grid-row:span 2}
+    .tile.span2x1{grid-column:span 2;grid-row:span 1}
+    .tile.span1x1{grid-column:span 1;grid-row:span 1}
+    @media (max-width:900px){
+      .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:30vw}
+      .tile.span2x2{grid-column:span 2;grid-row:span 2}
+      .tile.span2x1{grid-column:span 2}
+    }
+
+    /* Team */
     .team{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-    .teamCard{padding:16px;display:grid;gap:10px}
-    .avatar{width:100%;aspect-ratio:1;border-radius:12px;background:#f0f0f0 url('/img/team-1.jpg') center/cover no-repeat}
+    .teamCard{padding:16px;display:grid;gap:10px;border-radius:18px}
+    .avatar{width:100%;aspect-ratio:1;border-radius:14px;background:#f0f0f0 center/cover no-repeat;overflow:hidden}
     .bio{min-height:5.5em;line-height:1.35}
+
+    /* Öffnungszeiten + Anfahrt */
     .cols{display:grid;gap:20px;grid-template-columns:1fr 1fr}
-    /* Footer / info */
     .infoCard{padding:16px}
+    .hoursGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .hoursItem{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border:1px solid rgba(0,0,0,.06);border-radius:14px;background:#fff}
     .mapWrap{position:relative}
     .mapGuard{padding:16px;display:flex;gap:12px;align-items:center}
-    .embed{border:0;width:100%;height:360px;border-radius:12px}
+    .embed{border:0;width:100%;height:400px;border-radius:14px}
+
     /* Home theme */
-    [data-theme="rose"] body{background:
-      radial-gradient(1200px 600px at 70% -10%,#ffe7f0 0,transparent 60%),
-      linear-gradient(#fff 0,#fff 100%)}
-    [data-theme="rose"] .topbar{background:rgba(255,255,255,.85)}
-    /* MEN VIEW */
+    [data-theme="rose"] body{
+      background:
+        radial-gradient(1200px 600px at 70% -10%,#ffe7f0 0,transparent 60%),
+        linear-gradient(#fff 0,#fff 100%)
+    }
+
+    /* Views */
     .view{display:none}
     [data-view="home"] #home{display:block}
     [data-view="men"] #men{display:block}
     [data-view="women"] #women{display:block}
-    #men{background:linear-gradient(180deg,#0f1115,#131722)}
+
+    /* MEN VIEW styling */
+    #men{background:linear-gradient(180deg,var(--men-grad),var(--men-grad2))}
     #men .wrap{color:var(--men-txt)}
-    #men .topbar{background:rgba(15,17,21,.7);border-color:rgba(255,255,255,.06)}
     #men .pill,#men .btn{border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:var(--men-txt)}
     #men .btn.primary{background:linear-gradient(135deg,#2563eb,#1e40af);border:none}
     #men .card{background:var(--men-card);border-color:rgba(255,255,255,.08)}
     #men h2{color:#fff}
     .offerGrid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .offerCard{overflow:hidden}
+    .offerCard{overflow:hidden;border-radius:18px}
     .offerImg{aspect-ratio:4/3;background:#222 center/cover no-repeat;border-bottom:1px solid rgba(255,255,255,.08)}
-    /* WOMEN VIEW */
+
+    /* WOMEN VIEW styling */
     #women{background:linear-gradient(180deg,#fff,#fff7ea 60%,#fff)}
     #women .wrap{color:var(--women-txt)}
-    #women .topbar{background:rgba(255,255,255,.85)}
     #women .pill,#women .btn{border-color:rgba(0,0,0,.08);background:rgba(255,255,255,.8);color:var(--women-txt)}
     #women .btn.primary{background:linear-gradient(135deg,#f5d9a6,#caa24a);color:#1a1a1a;border:none}
     #women .card{background:#fff;border-color:rgba(0,0,0,.06)}
     #women h2{color:#1a1a1a}
     .sparkle{position:absolute; inset:auto 12px 12px auto; font-size:20px}
+
     /* micro-interactions */
     .hoverRaise{transition:.25s transform, .25s box-shadow}
     .hoverRaise:hover{transform:translateY(-2px); box-shadow:0 16px 40px rgba(0,0,0,.18)}
-    .fadeUp{opacity:0; transform:translateY(10px); animation:fadeUp .6s ease forwards; }
+    .fadeUp{opacity:0; transform:translateY(10px); animation:fadeUp .6s ease forwards;}
     @keyframes fadeUp{to{opacity:1; transform:translateY(0)}}
+
     /* responsive */
     @media (max-width:900px){
       .heroInner{grid-template-columns:1fr;gap:12px}
@@ -115,7 +161,7 @@
   <div class="topbar">
     <div class="container nav">
       <a class="pill" href="#women" data-link="women">Damenbereich</a>
-      <div class="logo">J</div>
+      <div class="logo" id="homeLogo" title="Zur Startseite">J</div>
       <a class="pill right" href="#men" data-link="men">Herrenbereich</a>
     </div>
   </div>
@@ -129,15 +175,13 @@
           <h1>Cut by Jody</h1>
           <p>Moderner Salon mit Herz. Direkt Termine buchen, entspannt vorbeikommen, gut aussehen. Ohne Warterei, ohne Drama.</p>
           <div class="cta">
-            <a class="btn primary hoverRaise" target="_blank" rel="noopener"
-               href="https://cut-by-jody.salonized.com/widget_bookings/new?layout=standalone&source=google_reserve&hl=en-DE&gei=n4TzaM2ID6eBxc8P0IWzyQo&rwg_token=ACgRB3cNqswGk8Rjy4f5TlZVh5gnWL5rLOTdAkRn3ANaVqAKPIx4EtmQrgjwj6u6IvrUaCelCGRushUONBlPnHw5bvdhcFybfw%3D%3D">
-              Jetzt Termin buchen
-            </a>
-            <button class="btn ghost hoverRaise" id="inlineBookingBtn">Im Fenster buchen</button>
+            <button class="btn primary hoverRaise" id="inlineBookingBtn">Termin buchen</button>
           </div>
         </div>
-        <div class="card hoverRaise" style="position:relative">
-          <div class="imgCover" title="Salon Außenansicht"></div>
+        <div class="card hoverRaise videoCover" aria-label="Salon Außenansicht Video">
+          <video autoplay muted loop playsinline preload="metadata" poster="/img/salon-poster.jpg">
+            <source src="/img/hero.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Collapsible inline booking -->
@@ -148,8 +192,9 @@
         </div>
         <iframe class="embed" loading="lazy"
           src="about:blank"
+          referrerpolicy="no-referrer-when-downgrade"
           data-src="https://cut-by-jody.salonized.com/widget_bookings/new?layout=standalone&source=google_reserve&hl=en-DE&gei=n4TzaM2ID6eBxc8P0IWzyQo&rwg_token=ACgRB3cNqswGk8Rjy4f5TlZVh5gnWL5rLOTdAkRn3ANaVqAKPIx4EtmQrgjwj6u6IvrUaCelCGRushUONBlPnHw5bvdhcFybfw%3D%3D"
-          title="Buchung">
+          title="Buchung" allow="fullscreen">
         </iframe>
       </div>
     </div>
@@ -157,13 +202,13 @@
     <!-- GALLERY -->
     <section class="container">
       <h2>Galerie</h2>
-      <div class="grid gallery">
-        <picture class="ph hoverRaise fadeUp"><img src="/img/salon-1.jpg" alt="Salon Innen 1" loading="lazy"></picture>
-        <picture class="ph hoverRaise fadeUp" style="animation-delay:.05s"><img src="/img/salon-2.jpg" alt="Salon Innen 2" loading="lazy"></picture>
-        <picture class="ph hoverRaise fadeUp" style="animation-delay:.1s"><img src="/img/salon-3.jpg" alt="Salon Bereich 3" loading="lazy"></picture>
-        <picture class="ph hoverRaise fadeUp" style="animation-delay:.15s"><img src="/img/salon-4.jpg" alt="Arbeitsplatz" loading="lazy"></picture>
-        <picture class="ph hoverRaise fadeUp" style="animation-delay:.2s"><img src="/img/salon-5.jpg" alt="Waschplatz" loading="lazy"></picture>
-        <picture class="ph hoverRaise fadeUp" style="animation-delay:.25s"><img src="/img/salon-6.jpg" alt="Außenbereich" loading="lazy"></picture>
+      <div class="gallery">
+        <figure class="tile span2x2 hoverRaise"><img src="/img/salon-1.jpg" alt="Salon Innen 1" loading="lazy"></figure>
+        <figure class="tile span2x1 hoverRaise"><img src="/img/salon-2.jpg" alt="Salon Innen 2" loading="lazy"></figure>
+        <figure class="tile span1x1 hoverRaise"><img src="/img/salon-3.jpg" alt="Salon Bereich 3" loading="lazy"></figure>
+        <figure class="tile span1x1 hoverRaise"><img src="/img/salon-4.jpg" alt="Arbeitsplatz" loading="lazy"></figure>
+        <figure class="tile span2x1 hoverRaise"><img src="/img/salon-5.jpg" alt="Waschplatz" loading="lazy"></figure>
+        <figure class="tile span1x1 hoverRaise"><img src="/img/salon-6.jpg" alt="Außenbereich" loading="lazy"></figure>
       </div>
     </section>
 
@@ -200,7 +245,15 @@
       <div class="cols">
         <div class="card infoCard">
           <h2>Öffnungszeiten</h2>
-          <p class="muted">Mo 10–18 • Di 10–18 • Mi 10–19 • Do 10–19 • Fr 10–18 • Sa 10–14 • So geschlossen</p>
+          <div class="hoursGrid">
+            <div class="hoursItem"><span>Montag</span><strong>10–18</strong></div>
+            <div class="hoursItem"><span>Donnerstag</span><strong>10–19</strong></div>
+            <div class="hoursItem"><span>Dienstag</span><strong>10–18</strong></div>
+            <div class="hoursItem"><span>Freitag</span><strong>10–18</strong></div>
+            <div class="hoursItem"><span>Mittwoch</span><strong>10–19</strong></div>
+            <div class="hoursItem"><span>Samstag</span><strong>10–14</strong></div>
+          </div>
+          <p class="muted" style="margin-top:8px">Sonntag geschlossen</p>
         </div>
         <div class="card infoCard mapWrap">
           <h2>Anfahrt</h2>
@@ -211,7 +264,9 @@
             <button id="enableMap" class="pill">Zustimmen & anzeigen</button>
             <a id="routeLink" class="pill" target="_blank" rel="noopener">Route öffnen</a>
           </div>
-          <iframe id="mapFrame" class="embed" hidden title="Karte"></iframe>
+          <iframe id="mapFrame" class="embed" hidden title="Karte"
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+          </iframe>
         </div>
       </div>
     </section>
@@ -223,16 +278,9 @@
   <!-- MEN VIEW -->
   <main id="men" class="view">
     <div class="wrap">
-      <div class="topbar">
-        <div class="container nav">
-          <a class="pill" href="#home" data-link="home">Zur Startseite</a>
-          <div class="logo" style="box-shadow:0 8px 18px rgba(59,130,246,.35), inset 0 0 0 4px rgba(255,255,255,.08); background:linear-gradient(135deg,#182033,#0f1524); color:#e9ecf1;border-color:rgba(255,255,255,.1)">J</div>
-          <a class="pill right" href="#women" data-link="women">Damenbereich</a>
-        </div>
-      </div>
       <section class="container" style="padding:28px 0 12px">
         <h2>Herrenbereich</h2>
-        <p style="color:var(--men-muted)">Klare Linien, schnelle Termine, saubere Fades. Drei Specials unten. Buchung läuft oben auf der Startseite.</p>
+        <p style="color:var(--men-muted)">Klare Linien, schnelle Termine, saubere Fades. Drei Specials unten. Buchen über „Termin buchen“ auf der Startseite.</p>
       </section>
       <section class="container">
         <div class="offerGrid">
@@ -265,17 +313,10 @@
   <!-- WOMEN VIEW -->
   <main id="women" class="view">
     <div class="wrap">
-      <div class="topbar">
-        <div class="container nav">
-          <a class="pill" href="#home" data-link="home">Zur Startseite</a>
-          <div class="logo" style="background:linear-gradient(135deg,#fff3d6,#f7e2a6); box-shadow:0 8px 18px rgba(202,162,74,.35), inset 0 0 0 4px rgba(255,255,255,.9); border-color:rgba(0,0,0,.06); color:#1a1a1a">J</div>
-          <a class="pill right" href="#men" data-link="men">Herrenbereich</a>
-        </div>
-      </div>
       <section class="container" style="padding:28px 0 12px; position:relative">
         <h2>Damenbereich</h2>
         <div class="sparkle">✦</div>
-        <p style="color:var(--women-muted)">Helle, warme Optik. Drei Spezialbehandlungen mit kurzer Erklärung. Buchen über die Startseite.</p>
+        <p style="color:var(--women-muted)">Helle, warme Optik. Drei Spezialbehandlungen mit kurzer Erklärung. Buchung über die Startseite.</p>
       </section>
       <section class="container">
         <div class="offerGrid">
@@ -309,13 +350,16 @@
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Route handling
+    // Route handling + theme switching
     const root = document.documentElement;
+    const homeLogo = document.getElementById('homeLogo');
     function setView(view){
       root.setAttribute('data-view', view);
       if(view === 'home'){ root.setAttribute('data-theme','rose'); }
       if(view === 'men'){ root.setAttribute('data-theme','men'); }
       if(view === 'women'){ root.setAttribute('data-theme','women'); }
+      // scroll to top on view change for mobile niceness
+      window.scrollTo({top:0, behavior:'instant'});
     }
     function hashToView(){
       const h = (location.hash||'#home').replace('#','');
@@ -323,8 +367,10 @@
     }
     window.addEventListener('hashchange', hashToView);
     hashToView();
+    // Logo click to home
+    homeLogo.addEventListener('click', ()=>{ location.hash = 'home'; });
 
-    // Inline booking toggle
+    // Inline booking toggle (single CTA)
     const inlineBtn = document.getElementById('inlineBookingBtn');
     const inlineBox = document.getElementById('inlineBooking');
     const closeBox  = document.getElementById('closeInlineBooking');
@@ -340,7 +386,7 @@
       });
     }
 
-    // Map with opt-in
+    // Map with opt-in (stabilized)
     const mapFrame = document.getElementById('mapFrame');
     const guard = document.getElementById('mapGuard');
     const routeLink = document.getElementById('routeLink');
@@ -350,19 +396,24 @@
     const enableBtn = document.getElementById('enableMap');
     if(enableBtn){
       enableBtn.addEventListener('click', ()=>{
-        mapFrame.src = `https://www.google.com/maps?q=${enc}&output=embed`;
+        // Use Maps embed search for better reliability
+        mapFrame.src = `https://www.google.com/maps/embed/v1/search?key=YOUR_GOOGLE_MAPS_EMBED_API_KEY&q=${enc}`;
+        // Fallback if no API key set
+        mapFrame.addEventListener('error', ()=>{
+          mapFrame.src = `https://www.google.com/maps?q=${enc}&output=embed`;
+        }, {once:true});
         mapFrame.hidden = false;
         guard.style.display = 'none';
       });
     }
 
-    // Fancy little reveal on scroll
+    // Reveal on scroll
     const obs = new IntersectionObserver((entries)=>{
       for(const e of entries){
         if(e.isIntersecting){ e.target.classList.add('fadeUp'); obs.unobserve(e.target); }
       }
     },{threshold:.1});
-    document.querySelectorAll('.hoverRaise,.ph').forEach(el=>obs.observe(el));
+    document.querySelectorAll('.hoverRaise,.tile').forEach(el=>obs.observe(el));
   </script>
 </body>
 </html>
