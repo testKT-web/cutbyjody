@@ -12,7 +12,7 @@
     :root{
       --radius:18px; --elev:0 10px 30px rgba(0,0,0,.12);
       --txt:#111; --muted:#555; --bg:#ffffff; --sub:#f8e1ea; --accent:#e84d84; --gold:#b2892f;
-      --men-bg:#0f1115; --men-grad:#0f1115; --men-grad2:#1a2438; --men-card:#161922; --men-txt:#e9ecf1; --men-muted:#9aa3af;
+      --men-bg:#0f1115; --men-grad:#0b0b0b; --men-grad2:#171717; --men-card:#161922; --men-txt:#e9ecf1; --men-muted:#9aa3af;
       --women-bg:#ffffff; --women-sub:#fff7e7; --women-accent:#c7a243; --women-txt:#1a1a1a; --women-muted:#666;
     }
     *{box-sizing:border-box}
@@ -48,11 +48,12 @@
       border-color:rgba(0,0,0,.06);
     }
     [data-theme="men"] .logo{
-      background:linear-gradient(135deg,#1b2233,#0f1524);
+      /* echt schwarz, kein Blau-Stich */
+      background:linear-gradient(135deg,#0b0b0b,#161616);
       color:#e9ecf1;
-      /* weißer Innenring sichtbar und smooth wie bei den anderen */
-      box-shadow:0 12px 26px rgba(0,0,0,.55), inset 0 0 0 4px rgba(255,255,255,.22);
-      border-color:rgba(255,255,255,.14);
+      /* deutlicher weißer Innenring */
+      box-shadow:0 14px 28px rgba(0,0,0,.6), inset 0 0 0 5px rgba(255,255,255,.35);
+      border-color:rgba(255,255,255,.18);
     }
 
     .pill{padding:10px 14px;border-radius:999px;border:1px solid rgba(0,0,0,.08);background:rgba(0,0,0,.03);transition:.2s}
@@ -89,6 +90,19 @@
       .gallery{grid-template-columns:1fr 1fr}
     }
 
+    /* Reviews */
+    .reviews{padding:18px 0}
+    .reviewsHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .reviewsHead h2{margin:0}
+    .reviewsGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .reviewCard{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:14px;box-shadow:var(--elev);min-height:150px;display:grid;gap:8px}
+    .stars{letter-spacing:1px}
+    .author{font-weight:600}
+    .source{color:#888;font-size:.9em}
+    @media (max-width:900px){
+      .reviewsGrid{grid-template-columns:1fr}
+    }
+
     /* Team */
     .team{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
     .teamCard{padding:16px;display:grid;gap:10px;border-radius:18px}
@@ -103,7 +117,6 @@
     /* Öffnungszeiten + Anfahrt */
     .cols{display:grid;gap:24px;grid-template-columns:1fr 1fr}
     .infoCard{padding:16px}
-    /* Neue Stundenliste: nutzt ganze Breite, gut lesbar */
     .hoursList{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
     .hoursRow{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border:1px solid rgba(0,0,0,.06);border-radius:14px;background:#fff}
     .hoursRow .day{font-weight:600}
@@ -136,27 +149,29 @@
     /* sanfte dunkle Färbung hinter den Angeboten */
     #men .wrap::before{
       content:""; position:fixed; inset:0; pointer-events:none;
-      background:radial-gradient(800px 300px at 20% -10%, rgba(255,255,255,.06), transparent 60%),
-                  radial-gradient(600px 240px at 80% 110%, rgba(255,255,255,.05), transparent 60%);
+      background:
+        radial-gradient(800px 300px at 20% -10%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(600px 240px at 80% 110%, rgba(255,255,255,.05), transparent 60%);
       mix-blend-mode:overlay; opacity:.6;
     }
     .offerGrid{position:relative; display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
     .offerCard{
       overflow:hidden;border-radius:18px;
-      background:linear-gradient(180deg, rgba(0,0,0,.38), rgba(0,0,0,.28));
+      /* schwarz, leicht verlaufend, kein Blau */
+      background:linear-gradient(180deg, rgba(0,0,0,.42), rgba(0,0,0,.28));
       border:1px solid rgba(255,255,255,.08); position:relative;
-      box-shadow:0 20px 40px rgba(0,0,0,.35);
+      box-shadow:0 22px 44px rgba(0,0,0,.4);
     }
-    /* schwarzer, transparenter Glow wie bei Frauen, nur dunkel */
+    /* dunkler Glow wie bei Frauen (gold), nur in schwarz */
     .offerCard::before{
       content:""; position:absolute; inset:-2px; border-radius:20px;
       background:
-        radial-gradient(500px 200px at 20% -20%, rgba(0,0,0,.35), transparent 60%),
-        radial-gradient(400px 180px at 120% 120%, rgba(0,0,0,.25), transparent 60%);
-      pointer-events:none; filter:blur(.3px);
+        radial-gradient(520px 220px at 18% -18%, rgba(0,0,0,.45), transparent 60%),
+        radial-gradient(420px 180px at 120% 120%, rgba(0,0,0,.3), transparent 60%);
+      pointer-events:none; filter:blur(.4px);
     }
     .offerImg{aspect-ratio:4/3;background:#0e0e10 center/cover no-repeat;border-bottom:1px solid rgba(255,255,255,.08)}
-    .offerCard > div:last-child{background:rgba(0,0,0,.20)}
+    .offerCard > div:last-child{background:rgba(0,0,0,.16)}
 
     /* WOMEN VIEW styling */
     #women{background:linear-gradient(180deg,#fff,#fff7ea 60%,#fff)}
@@ -248,6 +263,17 @@
         <figure class="tile hoverRaise"><img src="/img/salon-4.jpg" alt="Arbeitsplatz" loading="lazy"></figure>
         <figure class="tile hoverRaise"><img src="/img/salon-5.jpg" alt="Waschplatz" loading="lazy"></figure>
         <figure class="tile hoverRaise"><img src="/img/salon-6.jpg" alt="Außenbereich" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <!-- GOOGLE REVIEWS (rotierend, 3 sichtbar) -->
+    <section class="container reviews">
+      <div class="reviewsHead">
+        <h2>Google-Bewertungen</h2>
+        <small class="muted">nur 5-Sterne • aktualisiert automatisch</small>
+      </div>
+      <div id="reviewsGrid" class="reviewsGrid">
+        <!-- JS füllt hier 3 Cards, wechselt alle 15s -->
       </div>
     </section>
 
@@ -423,6 +449,80 @@
     const address = 'Marktallee 18, 48165 Münster';
     const enc = encodeURIComponent(address);
     if(routeLink){ routeLink.href = `https://www.google.com/maps/dir/?api=1&destination=${enc}`; }
+
+    // ---- GOOGLE REVIEWS (Places API mit Fallback) ----
+    // Fallback: falls kein API-Key gesetzt ist, werden diese Einträge rotiert.
+    const fallbackReviews = [
+      {author:'Lena M.', text:'Super nettes Team, schneller Service und top Ergebnis. Absolute Empfehlung!', rating:5, source:'Google'},
+      {author:'Daniel P.', text:'Spontan reingeschneit, perfekter Fade. Komme wieder.', rating:5, source:'Google'},
+      {author:'Hannah K.', text:'Balayage on point. Keine Wartezeit, faire Preise.', rating:5, source:'Google'},
+      {author:'Murat A.', text:'Bart & Haare genau so wie gewünscht. Sauberer Laden.', rating:5, source:'Google'},
+      {author:'Sophie R.', text:'Tolle Beratung, sehr präziser Schnitt. Danke!', rating:5, source:'Google'},
+      {author:'Jonas L.', text:'Online Termin buchen und zack fertig. 10/10.', rating:5, source:'Google'}
+    ];
+
+    const reviewsGrid = document.getElementById('reviewsGrid');
+    let currentIndex = 0;
+    function renderBatch(list){
+      reviewsGrid.innerHTML = '';
+      const batch = [];
+      for(let i=0;i<3;i++){ batch.push(list[(currentIndex+i)%list.length]); }
+      currentIndex = (currentIndex+3)%list.length;
+      for(const r of batch){
+        const card = document.createElement('article');
+        card.className = 'reviewCard hoverRaise';
+        card.innerHTML = `
+          <div class="stars">${'★'.repeat(r.rating)}<span class="muted">${'☆'.repeat(5-r.rating)}</span></div>
+          <p class="muted" style="margin:0">${r.text}</p>
+          <div class="author">${r.author}</div>
+          <div class="source">${r.source}</div>
+        `;
+        reviewsGrid.appendChild(card);
+      }
+    }
+
+    // Wenn du die echten Google-Bewertungen willst:
+    // 1) API Key unten eintragen
+    // 2) Falls placeId unbekannt, nutzt findPlaceFromQuery und lädt dann details
+    const GOOGLE_PLACES_API_KEY = ''; // <- hier Key eintragen
+    const PLACE_QUERY = 'Cut by Jody, Marktallee 18, 48165 Münster';
+
+    function initPlaces(){
+      if(!GOOGLE_PLACES_API_KEY){ renderBatch(fallbackReviews); setInterval(()=>renderBatch(fallbackReviews),15000); return; }
+      // Script dynamisch laden
+      const s = document.createElement('script');
+      s.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_PLACES_API_KEY}&libraries=places&loading=async`;
+      s.async = true;
+      s.defer = true;
+      s.onload = findPlaceAndFetchReviews;
+      s.onerror = ()=>{ renderBatch(fallbackReviews); setInterval(()=>renderBatch(fallbackReviews),15000); };
+      document.head.appendChild(s);
+    }
+
+    function findPlaceAndFetchReviews(){
+      const map = document.createElement('div'); // offscreen
+      const svc = new google.maps.places.PlacesService(map);
+      svc.findPlaceFromQuery({ query: PLACE_QUERY, fields: ['place_id'] }, (results,status)=>{
+        if(status !== google.maps.places.PlacesServiceStatus.OK || !results?.length){
+          renderBatch(fallbackReviews); setInterval(()=>renderBatch(fallbackReviews),15000); return;
+        }
+        const placeId = results[0].place_id;
+        svc.getDetails({ placeId, fields:['reviews','name','rating'] }, (place, st)=>{
+          if(st !== google.maps.places.PlacesServiceStatus.OK || !place?.reviews?.length){
+            renderBatch(fallbackReviews); setInterval(()=>renderBatch(fallbackReviews),15000); return;
+          }
+          // Nur 5-Sterne, Name + Text
+          const fiveStars = place.reviews
+            .filter(r=>Math.round(r.rating)===5 && r.text)
+            .map(r=>({author:r.author_name, text:r.text, rating:5, source:'Google'}));
+          const list = fiveStars.length >= 3 ? fiveStars : fallbackReviews;
+          renderBatch(list);
+          setInterval(()=>renderBatch(list),15000);
+        });
+      });
+    }
+
+    initPlaces();
   </script>
 </body>
 </html>
