@@ -1,4 +1,4 @@
-<!doctype html>
+<<!doctype html>
 <html lang="de" data-view="home" data-theme="rose">
 <head>
   <meta charset="utf-8">
@@ -46,81 +46,180 @@
       color:#1a1a1a;
       /* kräftigerer goldener Schimmer */
       box-shadow:
-        0 10px 22px rgba(232,77,132,.35),
-        0 0 0 10px rgba(199,162,67,.10),
+        0 12px 26px rgba(232,77,132,.35),
+        0 0 0 12px rgba(199,162,67,.14),
         inset 0 0 0 4px rgba(255,255,255,.95);
       border-color:rgba(0,0,0,.06);
     }
     [data-theme="men"] .logo{
-  background:linear-gradient(135deg,#000000,#161616);
-  color:#e9ecf1;
-  /* kräftiger weißer Innenring und kühler Shadow */
-  box-shadow:
-    0 18px 32px rgba(0,0,0,.8),
-    inset 0 0 0 5px rgba(255,255,255,.5),
-    inset 0 0 18px rgba(255,255,255,.1);
-  border-color:rgba(255,255,255,.25);
-}
+      /* tiefschwarz, kein Blau-Stich */
+      background:linear-gradient(135deg,#000000,#161616);
+      color:#e9ecf1;
+      /* deutlich sichtbarer weißer Innenring + leichter innerer Glow */
+      box-shadow:
+        0 18px 32px rgba(0,0,0,.75),
+        inset 0 0 0 6px rgba(255,255,255,.55),
+        inset 0 0 18px rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.25);
+    }
 
-/* MEN VIEW styling */
-#men{
-  background:linear-gradient(180deg,#0a0a0a,#181818);
-}
-#men .wrap{color:var(--men-txt)}
-#men h2{color:#fff}
+    .pill{padding:10px 14px;border-radius:999px;border:1px solid rgba(0,0,0,.08);background:rgba(0,0,0,.03);transition:.2s}
+    .pill:hover{transform:translateY(-1px)}
 
-/* schwarzer Raum-Glow */
-#men .wrap::before{
-  content:""; position:fixed; inset:0; pointer-events:none;
-  background:
-    radial-gradient(900px 400px at 20% -10%, rgba(255,255,255,.05), transparent 60%),
-    radial-gradient(700px 280px at 80% 110%, rgba(255,255,255,.04), transparent 60%),
-    radial-gradient(1200px 700px at 50% 40%, rgba(0,0,0,.6), transparent 75%);
-  mix-blend-mode:overlay;
-  opacity:.8;
-}
+    /* Hero */
+    .hero{position:relative;overflow:hidden}
+    .heroInner{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;padding:36px 0}
+    .heroText h1{font-family:"Playfair Display",serif;font-size:clamp(28px,5.4vw,54px);line-height:1.05;margin:8px 0}
+    .heroText p{color:var(--muted);max-width:60ch}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .btn{padding:12px 16px;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:#fff;box-shadow:var(--elev);transition:.2s}
+    .btn.primary{background:linear-gradient(135deg,#ff5f98,#ff9770);color:#fff;border:none}
+    .btn.ghost{background:transparent}
 
-.offerCard{
-  overflow:hidden;border-radius:18px;
-  background:transparent;
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:0 18px 40px rgba(0,0,0,.5);
-}
-.offerCard::before{
-  content:""; position:absolute; inset:-2px; border-radius:20px;
-  background:
-    radial-gradient(500px 220px at 18% -18%, rgba(0,0,0,.6), transparent 60%),
-    radial-gradient(420px 180px at 120% 120%, rgba(0,0,0,.4), transparent 60%);
-  pointer-events:none;
-  filter:blur(.3px);
-}
+    .card{border-radius:var(--radius);overflow:hidden;box-shadow:var(--elev);background:#fff;border:1px solid rgba(0,0,0,.06)}
+    .videoCover{aspect-ratio:16/9;background:#eee;position:relative}
+    .videoCover video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;border-radius:0}
 
-/* WOMEN VIEW styling */
-#women{
-  background:linear-gradient(180deg,#fff,#fff6df 60%,#fff);
-}
-#women .wrap{color:var(--women-txt)}
-#women .card{background:#fff;border-color:rgba(0,0,0,.06)}
-#women h2{color:#1a1a1a}
+    .ribbon{position:absolute;top:16px;left:16px;background:rgba(255,255,255,.9);padding:6px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.06)}
 
-/* deutlich kräftigerer goldener Raum-Glow */
-#women .wrap::before{
-  content:""; position:fixed; inset:0; pointer-events:none;
-  background:
-    radial-gradient(1100px 460px at 10% -10%, rgba(199,162,67,.25), transparent 60%),
-    radial-gradient(900px 420px at 90% 110%, rgba(199,162,67,.18), transparent 60%),
-    radial-gradient(1600px 800px at 50% 20%, rgba(255,213,110,.10), transparent 70%);
-  mix-blend-mode:screen;
-  opacity:1;
-}
+    /* Sections */
+    section{padding:40px 0}
+    h2{font-family:"Playfair Display",serif;font-size:28px;margin:0 0 14px}
+    .muted{color:var(--muted)}
+    .grid{display:grid;gap:16px}
 
-.sparkle{
-  position:absolute;
-  inset:auto 12px 12px auto;
-  font-size:22px;
-  color:#d4b14f;
-  text-shadow:0 0 15px rgba(212,177,79,.6);
-}
+    /* Gallery: 6 Bilder, symmetrisch */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .gallery figure{margin:0}
+    .gallery .tile{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--elev)}
+    .gallery .tile img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+    @media (max-width:900px){
+      .gallery{grid-template-columns:1fr 1fr}
+    }
+
+    /* Reviews */
+    .reviews{padding:18px 0}
+    .reviewsHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .reviewsHead h2{margin:0}
+    .reviewsGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .reviewCard{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:14px;box-shadow:var(--elev);min-height:150px;display:grid;gap:8px}
+    .stars{letter-spacing:1px}
+    .author{font-weight:600}
+    .source{color:#888;font-size:.9em}
+    @media (max-width:900px){
+      .reviewsGrid{grid-template-columns:1fr}
+    }
+
+    /* Team */
+    .team{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .teamCard{padding:16px;display:grid;gap:10px;border-radius:18px}
+    .avatar{width:100%;aspect-ratio:1;border-radius:14px;background:#f0f0f0 center/cover no-repeat;overflow:hidden}
+    .bio{min-height:5.5em;line-height:1.35}
+
+    /* Mehr Abstand VOR Team, ohne unten zu kleben */
+    .section--team{padding-top:56px}
+    /* zusätzlicher Abstand VOR Öffnungszeiten/Anfahrt belassen */
+    .section--afterTeam{padding-top:64px}
+
+    /* Öffnungszeiten + Anfahrt */
+    .cols{display:grid;gap:24px;grid-template-columns:1fr 1fr}
+    .infoCard{padding:16px}
+    .hoursList{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .hoursRow{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border:1px solid rgba(0,0,0,.06);border-radius:14px;background:#fff}
+    .hoursRow .day{font-weight:600}
+    .hoursRow .time{color:#333}
+    .hoursRow.closed{opacity:.7}
+    @media (max-width:900px){
+      .hoursList{grid-template-columns:1fr}
+    }
+
+    .mapWrap{position:relative}
+    .embed{border:0;width:100%;height:420px;border-radius:14px}
+
+    /* Home theme */
+    [data-theme="rose"] body{
+      background:
+        radial-gradient(1200px 600px at 70% -10%,#ffe7f0 0,transparent 60%),
+        linear-gradient(#fff 0,#fff 100%)
+    }
+
+    /* Views */
+    .view{display:none}
+    [data-view="home"] #home{display:block}
+    [data-view="men"] #men{display:block}
+    [data-view="women"] #women{display:block}
+
+    /* MEN VIEW styling */
+    #men{background:linear-gradient(180deg,var(--men-grad),var(--men-grad2))}
+    #men .wrap{color:var(--men-txt)}
+    #men h2{color:#fff}
+    /* sanfte dunkle Färbung hinter den Angeboten (globale Stimmung, kein Balken) */
+    #men .wrap::before{
+      content:""; position:fixed; inset:0; pointer-events:none;
+      background:
+        radial-gradient(900px 380px at 20% -10%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(700px 300px at 80% 110%, rgba(255,255,255,.05), transparent 60%),
+        radial-gradient(1400px 720px at 50% 35%, rgba(0,0,0,.65), transparent 75%);
+      mix-blend-mode:overlay; opacity:.85;
+    }
+    .offerGrid{position:relative; display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .offerCard{
+      overflow:hidden;border-radius:18px;
+      background:transparent;     /* kein Balken mehr */
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 18px 42px rgba(0,0,0,.5);
+      position:relative;
+    }
+    /* subtiler schwarzer Glow um die Cards herum (analog zum goldenen bei Frauen) */
+    .offerCard::before{
+      content:""; position:absolute; inset:-2px; border-radius:20px;
+      background:
+        radial-gradient(520px 220px at 18% -18%, rgba(0,0,0,.6), transparent 60%),
+        radial-gradient(420px 180px at 120% 120%, rgba(0,0,0,.4), transparent 60%);
+      pointer-events:none; filter:blur(.35px);
+    }
+    .offerImg{aspect-ratio:4/3;background:#0e0e10 center/cover no-repeat;border-bottom:1px solid rgba(255,255,255,.08)}
+    .offerCard > div:last-child{background:transparent} /* kein Hintergrund-Balken */
+
+    /* WOMEN VIEW styling */
+    #women{background:linear-gradient(180deg,#fff,#fff7ea 60%,#fff)}
+    #women .wrap{color:var(--women-txt)}
+    #women .card{background:#fff;border-color:rgba(0,0,0,.06)}
+    #women h2{color:#1a1a1a}
+    /* stärkerer goldener Raum-Glow */
+    #women .wrap::before{
+      content:""; position:fixed; inset:0; pointer-events:none;
+      background:
+        radial-gradient(1100px 460px at 10% -10%, rgba(199,162,67,.28), transparent 60%),
+        radial-gradient(900px 420px at 90% 110%, rgba(199,162,67,.22), transparent 60%),
+        radial-gradient(1600px 800px at 50% 20%, rgba(255,213,110,.12), transparent 70%);
+      mix-blend-mode:screen; opacity:1;
+    }
+    .sparkle{position:absolute; inset:auto 12px 12px auto; font-size:22px; color:#d4b14f; text-shadow:0 0 15px rgba(212,177,79,.6)}
+
+    /* micro-interactions */
+    .hoverRaise{transition:.25s transform, .25s box-shadow}
+    .hoverRaise:hover{transform:translateY(-2px); box-shadow:0 16px 40px rgba(0,0,0,.18)}
+    .fadeUp{opacity:0; transform:translateY(10px); animation:fadeUp .6s ease forwards;}
+    @keyframes fadeUp{to{opacity:1; transform:translateY(0)}}
+
+    /* BOOKING MODAL (Fullscreen) */
+    .modal{position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:200}
+    .modal.open{display:flex}
+    .modalCard{width:min(1100px,94vw); height:min(90vh,900px); background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.35); display:flex; flex-direction:column}
+    .modalHead{display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-bottom:1px solid rgba(0,0,0,.06)}
+    .modalBody{flex:1}
+    .modalBody .embed{height:100%; border-radius:0}
+
+    /* responsive */
+    @media (max-width:900px){
+      .heroInner{grid-template-columns:1fr;gap:12px}
+      .section--team{padding-top:42px}
+      .cols{grid-template-columns:1fr}
+      .nav{grid-template-columns:auto 1fr auto}
+      .logo{width:56px;height:56px}
+      .modalCard{width:96vw; height:88vh}
+    }
   </style>
 </head>
 <body>
