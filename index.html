@@ -1,4 +1,4 @@
-  <!doctype html>
+<!doctype html>
 <html lang="de" data-view="home" data-theme="rose">
 <head>
   <meta charset="utf-8">
@@ -39,8 +39,7 @@
         radial-gradient(circle at 30% 30%,rgba(255,255,255,.88),rgba(255,255,255,.72)),
         linear-gradient(135deg,#f2f2f2,#d7d7d7);
       color:#111;
-      /* schwarzer Schimmer statt rosa */
-      box-shadow:0 12px 24px rgba(0,0,0,.28), inset 0 0 0 4px rgba(255,255,255,.9);
+      box-shadow:0 12px 24px rgba(0,0,0,.28), inset 0 0 0 4px rgba(255,255,255,.92);
     }
     [data-theme="women"] .logo{
       background:linear-gradient(135deg,#ffe9f2,#ffd5e6);
@@ -51,8 +50,9 @@
     [data-theme="men"] .logo{
       background:linear-gradient(135deg,#1b2233,#0f1524);
       color:#e9ecf1;
-      box-shadow:0 10px 24px rgba(0,0,0,.5), inset 0 0 0 4px rgba(255,255,255,.08);
-      border-color:rgba(255,255,255,.12);
+      /* weißer Innenring sichtbar und smooth wie bei den anderen */
+      box-shadow:0 12px 26px rgba(0,0,0,.55), inset 0 0 0 4px rgba(255,255,255,.22);
+      border-color:rgba(255,255,255,.14);
     }
 
     .pill{padding:10px 14px;border-radius:999px;border:1px solid rgba(0,0,0,.08);background:rgba(0,0,0,.03);transition:.2s}
@@ -95,14 +95,24 @@
     .avatar{width:100%;aspect-ratio:1;border-radius:14px;background:#f0f0f0 center/cover no-repeat;overflow:hidden}
     .bio{min-height:5.5em;line-height:1.35}
 
-    /* Abstand zwischen Team und Info erhöhen */
+    /* Mehr Abstand VOR Team, ohne unten zu kleben */
+    .section--team{padding-top:56px}
+    /* zusätzlicher Abstand VOR Öffnungszeiten/Anfahrt belassen */
     .section--afterTeam{padding-top:64px}
 
     /* Öffnungszeiten + Anfahrt */
     .cols{display:grid;gap:24px;grid-template-columns:1fr 1fr}
     .infoCard{padding:16px}
-    .hoursGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    .hoursItem{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border:1px solid rgba(0,0,0,.06);border-radius:14px;background:#fff}
+    /* Neue Stundenliste: nutzt ganze Breite, gut lesbar */
+    .hoursList{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .hoursRow{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border:1px solid rgba(0,0,0,.06);border-radius:14px;background:#fff}
+    .hoursRow .day{font-weight:600}
+    .hoursRow .time{color:#333}
+    .hoursRow.closed{opacity:.7}
+    @media (max-width:900px){
+      .hoursList{grid-template-columns:1fr}
+    }
+
     .mapWrap{position:relative}
     .embed{border:0;width:100%;height:420px;border-radius:14px}
 
@@ -123,15 +133,30 @@
     #men{background:linear-gradient(180deg,var(--men-grad),var(--men-grad2))}
     #men .wrap{color:var(--men-txt)}
     #men h2{color:#fff}
-    .offerGrid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .offerCard{overflow:hidden;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);position:relative}
+    /* sanfte dunkle Färbung hinter den Angeboten */
+    #men .wrap::before{
+      content:""; position:fixed; inset:0; pointer-events:none;
+      background:radial-gradient(800px 300px at 20% -10%, rgba(255,255,255,.06), transparent 60%),
+                  radial-gradient(600px 240px at 80% 110%, rgba(255,255,255,.05), transparent 60%);
+      mix-blend-mode:overlay; opacity:.6;
+    }
+    .offerGrid{position:relative; display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .offerCard{
+      overflow:hidden;border-radius:18px;
+      background:linear-gradient(180deg, rgba(0,0,0,.38), rgba(0,0,0,.28));
+      border:1px solid rgba(255,255,255,.08); position:relative;
+      box-shadow:0 20px 40px rgba(0,0,0,.35);
+    }
+    /* schwarzer, transparenter Glow wie bei Frauen, nur dunkel */
     .offerCard::before{
       content:""; position:absolute; inset:-2px; border-radius:20px;
-      background:radial-gradient(500px 200px at 20% -20%, rgba(255,255,255,.08), transparent 60%);
-      pointer-events:none; filter:blur(0.2px);
+      background:
+        radial-gradient(500px 200px at 20% -20%, rgba(0,0,0,.35), transparent 60%),
+        radial-gradient(400px 180px at 120% 120%, rgba(0,0,0,.25), transparent 60%);
+      pointer-events:none; filter:blur(.3px);
     }
     .offerImg{aspect-ratio:4/3;background:#0e0e10 center/cover no-repeat;border-bottom:1px solid rgba(255,255,255,.08)}
-    .offerCard > div:last-child{background:rgba(0,0,0,.25)}
+    .offerCard > div:last-child{background:rgba(0,0,0,.20)}
 
     /* WOMEN VIEW styling */
     #women{background:linear-gradient(180deg,#fff,#fff7ea 60%,#fff)}
@@ -157,6 +182,7 @@
     /* responsive */
     @media (max-width:900px){
       .heroInner{grid-template-columns:1fr;gap:12px}
+      .section--team{padding-top:42px}
       .cols{grid-template-columns:1fr}
       .nav{grid-template-columns:auto 1fr auto}
       .logo{width:56px;height:56px}
@@ -226,7 +252,7 @@
     </section>
 
     <!-- TEAM -->
-    <section class="container">
+    <section class="container section--team">
       <h2>Team</h2>
       <div class="grid team">
         <article class="card teamCard hoverRaise">
@@ -258,15 +284,15 @@
       <div class="cols">
         <div class="card infoCard">
           <h2>Öffnungszeiten</h2>
-          <div class="hoursGrid">
-            <div class="hoursItem"><span>Montag</span><strong>10–18</strong></div>
-            <div class="hoursItem"><span>Dienstag</span><strong>10–18</strong></div>
-            <div class="hoursItem"><span>Mittwoch</span><strong>10–19</strong></div>
-            <div class="hoursItem"><span>Donnerstag</span><strong>10–19</strong></div>
-            <div class="hoursItem"><span>Freitag</span><strong>10–18</strong></div>
-            <div class="hoursItem"><span>Samstag</span><strong>10–14</strong></div>
+          <div class="hoursList">
+            <div class="hoursRow"><span class="day">Montag</span><span class="time">10:00–19:30 Uhr</span></div>
+            <div class="hoursRow"><span class="day">Dienstag</span><span class="time">10:00–19:30 Uhr</span></div>
+            <div class="hoursRow"><span class="day">Mittwoch</span><span class="time">10:00–19:30 Uhr</span></div>
+            <div class="hoursRow"><span class="day">Donnerstag</span><span class="time">10:00–19:30 Uhr</span></div>
+            <div class="hoursRow"><span class="day">Freitag</span><span class="time">10:00–19:30 Uhr</span></div>
+            <div class="hoursRow"><span class="day">Samstag</span><span class="time">10:00–19:30 Uhr</span></div>
+            <div class="hoursRow closed"><span class="day">Sonntag</span><span class="time">Geschlossen</span></div>
           </div>
-          <p class="muted" style="margin-top:8px">Sonntag geschlossen</p>
         </div>
         <div class="card infoCard mapWrap">
           <h2>Anfahrt</h2>
