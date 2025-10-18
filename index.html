@@ -1,4 +1,5 @@
-<!doctype html>
+
+            <!doctype html>
 <html lang="de" data-view="home" data-theme="rose">
 <head>
   <meta charset="utf-8">
@@ -36,10 +37,11 @@
     /* Logo themes */
     [data-theme="rose"] .logo{
       background:
-        radial-gradient(circle at 30% 30%,rgba(255,255,255,.85),rgba(255,255,255,.65)),
-        linear-gradient(135deg,#f3f3f3,#d9d9d9);
+        radial-gradient(circle at 30% 30%,rgba(255,255,255,.88),rgba(255,255,255,.72)),
+        linear-gradient(135deg,#f2f2f2,#d7d7d7);
       color:#111;
-      box-shadow:0 10px 20px rgba(0,0,0,.20), inset 0 0 0 4px rgba(255,255,255,.85);
+      /* schwarzer Schimmer statt rosa */
+      box-shadow:0 12px 24px rgba(0,0,0,.28), inset 0 0 0 4px rgba(255,255,255,.9);
     }
     [data-theme="women"] .logo{
       background:linear-gradient(135deg,#ffe9f2,#ffd5e6);
@@ -50,7 +52,7 @@
     [data-theme="men"] .logo{
       background:linear-gradient(135deg,#1b2233,#0f1524);
       color:#e9ecf1;
-      box-shadow:0 8px 18px rgba(0,0,0,.45), inset 0 0 0 4px rgba(255,255,255,.08);
+      box-shadow:0 10px 24px rgba(0,0,0,.5), inset 0 0 0 4px rgba(255,255,255,.08);
       border-color:rgba(255,255,255,.12);
     }
 
@@ -79,18 +81,13 @@
     .muted{color:var(--muted)}
     .grid{display:grid;gap:16px}
 
-    /* Gallery mosaic */
-    .gallery{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:14vw;gap:16px}
+    /* Gallery: 6 Bilder, symmetrisch */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .gallery figure{margin:0}
     .gallery .tile{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--elev)}
-    .gallery .tile img{width:100%;height:100%;object-fit:cover}
-    /* layout: 6 images in mosaic */
-    .tile.span2x2{grid-column:span 3;grid-row:span 2}
-    .tile.span2x1{grid-column:span 2;grid-row:span 1}
-    .tile.span1x1{grid-column:span 1;grid-row:span 1}
+    .gallery .tile img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
     @media (max-width:900px){
-      .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:30vw}
-      .tile.span2x2{grid-column:span 2;grid-row:span 2}
-      .tile.span2x1{grid-column:span 2}
+      .gallery{grid-template-columns:1fr 1fr}
     }
 
     /* Team */
@@ -99,14 +96,16 @@
     .avatar{width:100%;aspect-ratio:1;border-radius:14px;background:#f0f0f0 center/cover no-repeat;overflow:hidden}
     .bio{min-height:5.5em;line-height:1.35}
 
+    /* Abstand zwischen Team und Info erhöhen */
+    .section--afterTeam{padding-top:64px}
+
     /* Öffnungszeiten + Anfahrt */
-    .cols{display:grid;gap:20px;grid-template-columns:1fr 1fr}
+    .cols{display:grid;gap:24px;grid-template-columns:1fr 1fr}
     .infoCard{padding:16px}
     .hoursGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
     .hoursItem{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border:1px solid rgba(0,0,0,.06);border-radius:14px;background:#fff}
     .mapWrap{position:relative}
-    .mapGuard{padding:16px;display:flex;gap:12px;align-items:center}
-    .embed{border:0;width:100%;height:400px;border-radius:14px}
+    .embed{border:0;width:100%;height:420px;border-radius:14px}
 
     /* Home theme */
     [data-theme="rose"] body{
@@ -124,19 +123,20 @@
     /* MEN VIEW styling */
     #men{background:linear-gradient(180deg,var(--men-grad),var(--men-grad2))}
     #men .wrap{color:var(--men-txt)}
-    #men .pill,#men .btn{border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:var(--men-txt)}
-    #men .btn.primary{background:linear-gradient(135deg,#2563eb,#1e40af);border:none}
-    #men .card{background:var(--men-card);border-color:rgba(255,255,255,.08)}
     #men h2{color:#fff}
     .offerGrid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .offerCard{overflow:hidden;border-radius:18px}
-    .offerImg{aspect-ratio:4/3;background:#222 center/cover no-repeat;border-bottom:1px solid rgba(255,255,255,.08)}
+    .offerCard{overflow:hidden;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);position:relative}
+    .offerCard::before{
+      content:""; position:absolute; inset:-2px; border-radius:20px;
+      background:radial-gradient(500px 200px at 20% -20%, rgba(255,255,255,.08), transparent 60%);
+      pointer-events:none; filter:blur(0.2px);
+    }
+    .offerImg{aspect-ratio:4/3;background:#0e0e10 center/cover no-repeat;border-bottom:1px solid rgba(255,255,255,.08)}
+    .offerCard > div:last-child{background:rgba(0,0,0,.25)}
 
     /* WOMEN VIEW styling */
     #women{background:linear-gradient(180deg,#fff,#fff7ea 60%,#fff)}
     #women .wrap{color:var(--women-txt)}
-    #women .pill,#women .btn{border-color:rgba(0,0,0,.08);background:rgba(255,255,255,.8);color:var(--women-txt)}
-    #women .btn.primary{background:linear-gradient(135deg,#f5d9a6,#caa24a);color:#1a1a1a;border:none}
     #women .card{background:#fff;border-color:rgba(0,0,0,.06)}
     #women h2{color:#1a1a1a}
     .sparkle{position:absolute; inset:auto 12px 12px auto; font-size:20px}
@@ -147,12 +147,21 @@
     .fadeUp{opacity:0; transform:translateY(10px); animation:fadeUp .6s ease forwards;}
     @keyframes fadeUp{to{opacity:1; transform:translateY(0)}}
 
+    /* BOOKING MODAL (Fullscreen) */
+    .modal{position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:200}
+    .modal.open{display:flex}
+    .modalCard{width:min(1100px,94vw); height:min(90vh,900px); background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.35); display:flex; flex-direction:column}
+    .modalHead{display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-bottom:1px solid rgba(0,0,0,.06)}
+    .modalBody{flex:1}
+    .modalBody .embed{height:100%; border-radius:0}
+
     /* responsive */
     @media (max-width:900px){
       .heroInner{grid-template-columns:1fr;gap:12px}
       .cols{grid-template-columns:1fr}
       .nav{grid-template-columns:auto 1fr auto}
       .logo{width:56px;height:56px}
+      .modalCard{width:96vw; height:88vh}
     }
   </style>
 </head>
@@ -184,18 +193,23 @@
           </video>
         </div>
       </div>
-      <!-- Collapsible inline booking -->
-      <div id="inlineBooking" class="card" style="margin-top:14px; display:none;">
-        <div style="padding:8px 12px;border-bottom:1px solid rgba(0,0,0,.06);display:flex;justify-content:space-between;align-items:center">
+    </div>
+
+    <!-- BOOKING MODAL -->
+    <div id="bookingModal" class="modal" aria-hidden="true">
+      <div class="modalCard">
+        <div class="modalHead">
           <strong>Online-Termin</strong>
           <button class="pill" id="closeInlineBooking">Schließen</button>
         </div>
-        <iframe class="embed" loading="lazy"
-          src="about:blank"
-          referrerpolicy="no-referrer-when-downgrade"
-          data-src="https://cut-by-jody.salonized.com/widget_bookings/new?layout=standalone&source=google_reserve&hl=en-DE&gei=n4TzaM2ID6eBxc8P0IWzyQo&rwg_token=ACgRB3cNqswGk8Rjy4f5TlZVh5gnWL5rLOTdAkRn3ANaVqAKPIx4EtmQrgjwj6u6IvrUaCelCGRushUONBlPnHw5bvdhcFybfw%3D%3D"
-          title="Buchung" allow="fullscreen">
-        </iframe>
+        <div class="modalBody">
+          <iframe class="embed"
+            src="about:blank"
+            referrerpolicy="no-referrer-when-downgrade"
+            data-src="https://cut-by-jody.salonized.com/widget_bookings/new?layout=standalone&source=google_reserve&hl=en-DE&gei=n4TzaM2ID6eBxc8P0IWzyQo&rwg_token=ACgRB3cNqswGk8Rjy4f5TlZVh5gnWL5rLOTdAkRn3ANaVqAKPIx4EtmQrgjwj6u6IvrUaCelCGRushUONBlPnHw5bvdhcFybfw%3D%3D"
+            title="Buchung" allow="fullscreen">
+          </iframe>
+        </div>
       </div>
     </div>
 
@@ -203,12 +217,12 @@
     <section class="container">
       <h2>Galerie</h2>
       <div class="gallery">
-        <figure class="tile span2x2 hoverRaise"><img src="/img/salon-1.jpg" alt="Salon Innen 1" loading="lazy"></figure>
-        <figure class="tile span2x1 hoverRaise"><img src="/img/salon-2.jpg" alt="Salon Innen 2" loading="lazy"></figure>
-        <figure class="tile span1x1 hoverRaise"><img src="/img/salon-3.jpg" alt="Salon Bereich 3" loading="lazy"></figure>
-        <figure class="tile span1x1 hoverRaise"><img src="/img/salon-4.jpg" alt="Arbeitsplatz" loading="lazy"></figure>
-        <figure class="tile span2x1 hoverRaise"><img src="/img/salon-5.jpg" alt="Waschplatz" loading="lazy"></figure>
-        <figure class="tile span1x1 hoverRaise"><img src="/img/salon-6.jpg" alt="Außenbereich" loading="lazy"></figure>
+        <figure class="tile hoverRaise"><img src="/img/salon-1.jpg" alt="Salon Innen 1" loading="lazy"></figure>
+        <figure class="tile hoverRaise"><img src="/img/salon-2.jpg" alt="Salon Innen 2" loading="lazy"></figure>
+        <figure class="tile hoverRaise"><img src="/img/salon-3.jpg" alt="Salon Bereich 3" loading="lazy"></figure>
+        <figure class="tile hoverRaise"><img src="/img/salon-4.jpg" alt="Arbeitsplatz" loading="lazy"></figure>
+        <figure class="tile hoverRaise"><img src="/img/salon-5.jpg" alt="Waschplatz" loading="lazy"></figure>
+        <figure class="tile hoverRaise"><img src="/img/salon-6.jpg" alt="Außenbereich" loading="lazy"></figure>
       </div>
     </section>
 
@@ -241,37 +255,35 @@
     </section>
 
     <!-- INFO: Öffnungszeiten + Anfahrt -->
-    <section class="container">
+    <section class="container section--afterTeam">
       <div class="cols">
         <div class="card infoCard">
           <h2>Öffnungszeiten</h2>
           <div class="hoursGrid">
             <div class="hoursItem"><span>Montag</span><strong>10–18</strong></div>
-            <div class="hoursItem"><span>Donnerstag</span><strong>10–19</strong></div>
             <div class="hoursItem"><span>Dienstag</span><strong>10–18</strong></div>
-            <div class="hoursItem"><span>Freitag</span><strong>10–18</strong></div>
             <div class="hoursItem"><span>Mittwoch</span><strong>10–19</strong></div>
+            <div class="hoursItem"><span>Donnerstag</span><strong>10–19</strong></div>
+            <div class="hoursItem"><span>Freitag</span><strong>10–18</strong></div>
             <div class="hoursItem"><span>Samstag</span><strong>10–14</strong></div>
           </div>
           <p class="muted" style="margin-top:8px">Sonntag geschlossen</p>
         </div>
         <div class="card infoCard mapWrap">
           <h2>Anfahrt</h2>
-          <div id="mapGuard" class="mapGuard">
-            <div>
-              <strong>Karte laden</strong><br><span class="muted">Externe Karte wird erst nach Zustimmung geladen.</span>
-            </div>
-            <button id="enableMap" class="pill">Zustimmen & anzeigen</button>
+          <p class="muted" style="margin:6px 0 12px"><strong>Marktallee 18</strong>, 48165 Münster</p>
+          <iframe id="mapFrame" class="embed" title="Karte"
+                  loading="lazy"
+                  src="https://www.google.com/maps?q=Marktallee%2018%2C%2048165%20M%C3%BCnster&output=embed">
+          </iframe>
+          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
             <a id="routeLink" class="pill" target="_blank" rel="noopener">Route öffnen</a>
           </div>
-          <iframe id="mapFrame" class="embed" hidden title="Karte"
-                  loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
-          </iframe>
         </div>
       </div>
     </section>
-    <footer class="container" style="padding:20px 0;color:#777">
-      <small>© <span id="year"></span> Cut by Jody • Hiltrup, Münster • <a href="#women" data-link="women">Damen</a> • <a href="#men" data-link="men">Herren</a></small>
+    <footer class="container" style="padding:24px 0;color:#777">
+      <small>© <span id="year"></span> Cut by Jody • Marktallee 18, Münster • <a href="#women" data-link="women">Damen</a> • <a href="#men" data-link="men">Herren</a></small>
     </footer>
   </main>
 
@@ -280,7 +292,7 @@
     <div class="wrap">
       <section class="container" style="padding:28px 0 12px">
         <h2>Herrenbereich</h2>
-        <p style="color:var(--men-muted)">Klare Linien, schnelle Termine, saubere Fades. Drei Specials unten. Buchen über „Termin buchen“ auf der Startseite.</p>
+        <p style="color:var(--men-muted)">Klare Linien, schnelle Termine, saubere Fades. Drei Specials unten. Buchung über „Termin buchen“ auf der Startseite.</p>
       </section>
       <section class="container">
         <div class="offerGrid">
@@ -358,7 +370,6 @@
       if(view === 'home'){ root.setAttribute('data-theme','rose'); }
       if(view === 'men'){ root.setAttribute('data-theme','men'); }
       if(view === 'women'){ root.setAttribute('data-theme','women'); }
-      // scroll to top on view change for mobile niceness
       window.scrollTo({top:0, behavior:'instant'});
     }
     function hashToView(){
@@ -370,50 +381,23 @@
     // Logo click to home
     homeLogo.addEventListener('click', ()=>{ location.hash = 'home'; });
 
-    // Inline booking toggle (single CTA)
+    // Booking modal
+    const modal = document.getElementById('bookingModal');
     const inlineBtn = document.getElementById('inlineBookingBtn');
-    const inlineBox = document.getElementById('inlineBooking');
     const closeBox  = document.getElementById('closeInlineBooking');
-    if(inlineBtn && inlineBox){
-      inlineBtn.addEventListener('click', ()=>{
-        inlineBox.style.display = 'block';
-        const f = inlineBox.querySelector('iframe');
-        if(f && f.src === 'about:blank'){ f.src = f.dataset.src; }
-        inlineBox.scrollIntoView({behavior:'smooth'});
-      });
-      closeBox.addEventListener('click', ()=>{
-        inlineBox.style.display = 'none';
-      });
-    }
+    const iframe = modal.querySelector('iframe');
+    inlineBtn.addEventListener('click', ()=>{
+      modal.classList.add('open');
+      if(iframe.src === 'about:blank'){ iframe.src = iframe.dataset.src; }
+    });
+    closeBox.addEventListener('click', ()=> modal.classList.remove('open'));
+    modal.addEventListener('click',(e)=>{ if(e.target === modal) modal.classList.remove('open'); });
 
-    // Map with opt-in (stabilized)
-    const mapFrame = document.getElementById('mapFrame');
-    const guard = document.getElementById('mapGuard');
+    // Map + Route
     const routeLink = document.getElementById('routeLink');
-    const address = 'Hiltrup, Münster';
+    const address = 'Marktallee 18, 48165 Münster';
     const enc = encodeURIComponent(address);
     if(routeLink){ routeLink.href = `https://www.google.com/maps/dir/?api=1&destination=${enc}`; }
-    const enableBtn = document.getElementById('enableMap');
-    if(enableBtn){
-      enableBtn.addEventListener('click', ()=>{
-        // Use Maps embed search for better reliability
-        mapFrame.src = `https://www.google.com/maps/embed/v1/search?key=YOUR_GOOGLE_MAPS_EMBED_API_KEY&q=${enc}`;
-        // Fallback if no API key set
-        mapFrame.addEventListener('error', ()=>{
-          mapFrame.src = `https://www.google.com/maps?q=${enc}&output=embed`;
-        }, {once:true});
-        mapFrame.hidden = false;
-        guard.style.display = 'none';
-      });
-    }
-
-    // Reveal on scroll
-    const obs = new IntersectionObserver((entries)=>{
-      for(const e of entries){
-        if(e.isIntersecting){ e.target.classList.add('fadeUp'); obs.unobserve(e.target); }
-      }
-    },{threshold:.1});
-    document.querySelectorAll('.hoverRaise,.tile').forEach(el=>obs.observe(el));
   </script>
 </body>
 </html>
