@@ -327,3 +327,22 @@ a{ color: inherit; }
     0 4px 8px rgba(0, 0, 0, 0.15);
   background: linear-gradient(145deg, #111111, #000000);
 }
+.reviewRotator{
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: #111;
+  color: #fff;
+  max-width: 520px;
+}
+
+.reviewRotator .stars{
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+.reviewRotator p{
+  margin: 8px 0 0;
+  font-size: 15px;
+}
