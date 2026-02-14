@@ -52,13 +52,17 @@
   });
 })();
 const reviews = [
-  "„Top Service, sehr präzise Arbeit und angenehme Atmosphäre.“",
-  "„Bester Friseur in Münster. Beratung ehrlich und professionell.“",
-  "„Sauberer Laden, freundliches Team und perfekter Schnitt.“",
-  "„Termin schnell bekommen und super zufrieden mit dem Ergebnis.“",
-  "„Moderne Schnitte, klare Übergänge und faire Preise.“"
+  "Präzise Schnitte und moderne Styles.",
+  "Freundliches Team, ehrliche Beratung und saubere Arbeit.",
+  "Schnelle Terminvergabe und überzeugendes Ergebnis.",
+  "Angenehme Atmosphäre und professioneller Service.",
+  "Moderne Schnitte, klare Übergänge und faire Preise.",
+  "Sauberer Laden, sehr sympathisches Team.",
+  "Top Beratung und perfektes Styling.",
+  "Bester Friseur in Münster mit konstant hoher Qualität.",
+  "Sehr präzise Arbeit und entspannte Stimmung.",
+  "Klare Linien, moderne Looks und saubere Übergänge."
 ];
-
 let index = 0;
 const reviewText = document.getElementById("reviewText");
 
