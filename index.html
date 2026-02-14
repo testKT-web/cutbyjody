@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CUT BY JODY – Damen & Herren</title>
-  <meta name="description" content="CUT BY JODY – Preise, Öffnungszeiten, Team, Anfahrt und Online Terminbuchung." />
+  <meta name="description" content="CUT BY JODY – Preise, Öffnungszeiten, Team, Galerie, Anfahrt und Online Terminbuchung." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -24,6 +24,7 @@
       <a href="damen.html">Damen</a>
       <a href="herren.html">Herren</a>
       <a href="#preise">Preise</a>
+      <a href="#galerie">Galerie</a>
       <a href="#team">Team</a>
       <a href="#kontakt">Anfahrt</a>
 
@@ -45,6 +46,7 @@
     <a href="damen.html">Damen</a>
     <a href="herren.html">Herren</a>
     <a href="#preise">Preise</a>
+    <a href="#galerie">Galerie</a>
     <a href="#team">Team</a>
     <a href="#kontakt">Anfahrt</a>
 
@@ -116,8 +118,27 @@
     </div>
   </section>
 
+  <!-- GALERIE -->
+  <section class="section section--alt" id="galerie">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Galerie</h2>
+        <p>Einblicke in den Salon. Klick auf ein Bild zum Vergrößern.</p>
+      </div>
+
+      <div class="galleryGrid">
+        <figure class="galleryItem"><img src="assets/gallery-1.jpg" alt="Salon Impression 1" loading="lazy"></figure>
+        <figure class="galleryItem"><img src="assets/gallery-2.jpg" alt="Salon Impression 2" loading="lazy"></figure>
+        <figure class="galleryItem"><img src="assets/gallery-3.jpg" alt="Salon Impression 3" loading="lazy"></figure>
+        <figure class="galleryItem"><img src="assets/gallery-4.jpg" alt="Salon Impression 4" loading="lazy"></figure>
+        <figure class="galleryItem"><img src="assets/gallery-5.jpg" alt="Salon Impression 5" loading="lazy"></figure>
+        <figure class="galleryItem"><img src="assets/gallery-6.jpg" alt="Salon Impression 6" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
   <!-- TEAM -->
-  <section class="section section--alt" id="team">
+  <section class="section" id="team">
     <div class="container">
       <div class="sectionHead">
         <h2>Team</h2>
@@ -182,8 +203,8 @@
     </div>
   </section>
 
-  <!-- ANFAHRT (Maps oder Alternative) -->
-  <section class="section" id="kontakt">
+  <!-- ANFAHRT -->
+  <section class="section section--alt" id="kontakt">
     <div class="container">
       <div class="sectionHead">
         <h2>Anfahrt</h2>
@@ -227,6 +248,12 @@
   </section>
 
 </main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightboxClose" type="button" aria-label="Schließen">✕</button>
+  <img src="" alt="Vergrößertes Bild">
+</div>
 
 <script src="script.js"></script>
 </body>
