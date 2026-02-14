@@ -51,3 +51,28 @@
     if (e.key === "Escape" && box.classList.contains("open")) close();
   });
 })();
+const reviews = [
+  "„Top Service, sehr präzise Arbeit und angenehme Atmosphäre.“",
+  "„Bester Friseur in Münster. Beratung ehrlich und professionell.“",
+  "„Sauberer Laden, freundliches Team und perfekter Schnitt.“",
+  "„Termin schnell bekommen und super zufrieden mit dem Ergebnis.“",
+  "„Moderne Schnitte, klare Übergänge und faire Preise.“"
+];
+
+let index = 0;
+const reviewText = document.getElementById("reviewText");
+
+function rotateReview(){
+  index = (index + 1) % reviews.length;
+  reviewText.style.opacity = 0;
+
+  setTimeout(() => {
+    reviewText.textContent = reviews[index];
+    reviewText.style.opacity = 1;
+  }, 300);
+}
+
+if(reviewText){
+  reviewText.style.transition = "opacity .3s ease";
+  setInterval(rotateReview, 4000);
+}
