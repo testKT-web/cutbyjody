@@ -305,7 +305,8 @@ a{ color: inherit; }
 }
 .btn-primary {
   display: inline-block;
-  margin-top: 40px;
+  margin-top: 32px;       /* Abstand nach oben */
+  margin-bottom: 48px;    /* Mehr Luft nach unten → wirkt höher platziert */
   padding: 18px 42px;
   background: linear-gradient(145deg, #000000, #1c1c1c);
   color: #ffffff;
@@ -313,7 +314,7 @@ a{ color: inherit; }
   font-weight: 600;
   letter-spacing: 0.6px;
   border-radius: 14px;
-  box-shadow: 
+  box-shadow:
     0 8px 20px rgba(0, 0, 0, 0.15),
     0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
@@ -321,7 +322,7 @@ a{ color: inherit; }
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 
+  box-shadow:
     0 14px 30px rgba(0, 0, 0, 0.25),
     0 4px 8px rgba(0, 0, 0, 0.15);
   background: linear-gradient(145deg, #111111, #000000);
