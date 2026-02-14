@@ -1,1 +1,233 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CUT BY JODY – Damen & Herren</title>
+  <meta name="description" content="CUT BY JODY – Preise, Öffnungszeiten, Team, Anfahrt und Online Terminbuchung." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
+<header class="header">
+  <div class="container header__inner">
+    <!-- Logo = Home Button -->
+    <a class="brand" href="index.html" aria-label="Home">
+      <img src="assets/logo.png" alt="CUT BY JODY Logo" />
+      <div class="brand__text">
+        <strong>CUT BY JODY</strong>
+        <span>Damen & Herren</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Navigation">
+      <a href="damen.html">Damen</a>
+      <a href="herren.html">Herren</a>
+      <a href="#preise">Preise</a>
+      <a href="#team">Team</a>
+      <a href="#kontakt">Anfahrt</a>
+
+      <!-- EIN Termin-Button -->
+      <a class="btn btn--primary"
+         href="https://cut-by-jody.salonized.com/widget_bookings/new?layout=standalone&source=google_reserve&hl=en-DE&gei=kGSQaZnKPMqB9u8PzYaI4Ao&rwg_token=AFd1xnFwhGVKkRRz55fR6ewnXWOHA6EHq_9plGaN2th9wVHDgSMCpQUjaEC1BX5WgKwgNC0qezsRF1aC5rL2sV-CIJ80ubXuWQ%3D%3D"
+         target="_blank" rel="noopener">
+        Termin buchen
+      </a>
+    </nav>
+
+    <button class="burger" aria-label="Menü öffnen" aria-expanded="false" data-burger>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menü (gleicher Button, nur responsive Ansicht) -->
+  <div class="container mobileNav" data-mobile-nav>
+    <a href="damen.html">Damen</a>
+    <a href="herren.html">Herren</a>
+    <a href="#preise">Preise</a>
+    <a href="#team">Team</a>
+    <a href="#kontakt">Anfahrt</a>
+
+    <a class="btn btn--primary"
+       href="https://cut-by-jody.salonized.com/widget_bookings/new?layout=standalone&source=google_reserve&hl=en-DE&gei=kGSQaZnKPMqB9u8PzYaI4Ao&rwg_token=AFd1xnFwhGVKkRRz55fR6ewnXWOHA6EHq_9plGaN2th9wVHDgSMCpQUjaEC1BX5WgKwgNC0qezsRF1aC5rL2sV-CIJ80ubXuWQ%3D%3D"
+       target="_blank" rel="noopener">
+      Termin buchen
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="heroCard">
+        <div class="heroBody">
+          <div class="eyebrow">Damen & Herren</div>
+          <h1>CUT BY JODY</h1>
+          <p class="lead">
+            Moderner Salon. Saubere Schnitte, Styling, Coloration sowie Bart & Gesicht.
+            Online buchen, vorbeikommen, gut aussehen.
+          </p>
+        </div>
+      </div>
+
+      <div class="heroCard heroMedia">
+        <img src="assets/hero-1.jpg" alt="Salon Impression" />
+      </div>
+    </div>
+  </section>
+
+  <!-- PREISE + ÖFFNUNGSZEITEN -->
+  <section class="section" id="preise">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Preise & Öffnungszeiten</h2>
+        <p>Auszug auf der Startseite. Vollständige Listen unter Damen und Herren.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Preise (Auszug)</h3>
+          <ul class="priceList">
+            <li><span>Herren Haarschnitt</span><strong>24 €</strong></li>
+            <li><span>Herren Haare & Bart</span><strong>36 €</strong></li>
+            <li><span>Damen Waschen, Schneiden, Föhnen</span><strong>40–50 €</strong></li>
+            <li><span>Damen Waschen, Schneiden</span><strong>30–40 €</strong></li>
+          </ul>
+          <p class="muted" style="margin:12px 0 0;">
+            <a href="damen.html">→ Damen Preise</a> · <a href="herren.html">→ Herren Preise</a>
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Öffnungszeiten</h3>
+          <ul class="hours">
+            <li><span>Montag</span><strong>09:00 – 19:00</strong></li>
+            <li><span>Dienstag</span><strong>09:00 – 19:00</strong></li>
+            <li><span>Mittwoch</span><strong>09:00 – 19:00</strong></li>
+            <li><span>Donnerstag</span><strong>09:00 – 19:00</strong></li>
+            <li><span>Freitag</span><strong>09:00 – 19:00</strong></li>
+            <li><span>Samstag</span><strong>09:00 – 19:00</strong></li>
+            <li><span>Sonntag</span><strong>Geschlossen</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section section--alt" id="team">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Team</h2>
+        <p>3 Mitarbeiter, jeweils Foto, Instagram und 1–2 Sätze.</p>
+      </div>
+
+      <div class="teamGrid">
+        <article class="teamCard">
+          <img src="assets/team-1.jpg" alt="Jody" loading="lazy" />
+          <div class="teamBody">
+            <div class="teamTop">
+              <div>
+                <strong>Jody</strong>
+                <div class="muted">Owner • Damen & Herren</div>
+              </div>
+              <a class="iconBtn" href="https://instagram.com/DEINPROFIL1" target="_blank" rel="noopener" aria-label="Instagram Jody">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm9 2h-9A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.5-.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/></svg>
+              </a>
+            </div>
+            <p class="muted" style="margin:10px 0 0;">
+              Präzise Schnitte, saubere Übergänge, klare Beratung. Ein Look, der auch später noch sitzt.
+            </p>
+          </div>
+        </article>
+
+        <article class="teamCard">
+          <img src="assets/team-2.jpg" alt="Mitarbeiter 2" loading="lazy" />
+          <div class="teamBody">
+            <div class="teamTop">
+              <div>
+                <strong>NAME 2</strong>
+                <div class="muted">Stylist • Color & Styling</div>
+              </div>
+              <a class="iconBtn" href="https://instagram.com/DEINPROFIL2" target="_blank" rel="noopener" aria-label="Instagram Mitarbeiter 2">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm9 2h-9A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.5-.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/></svg>
+              </a>
+            </div>
+            <p class="muted" style="margin:10px 0 0;">
+              Farbe, Tönung und Styling mit Gefühl für Proportionen. Wenn’s “neu” aussehen soll, dann richtig.
+            </p>
+          </div>
+        </article>
+
+        <article class="teamCard">
+          <img src="assets/team-3.jpg" alt="Mitarbeiter 3" loading="lazy" />
+          <div class="teamBody">
+            <div class="teamTop">
+              <div>
+                <strong>NAME 3</strong>
+                <div class="muted">Barber • Bart & Gesicht</div>
+              </div>
+              <a class="iconBtn" href="https://instagram.com/DEINPROFIL3" target="_blank" rel="noopener" aria-label="Instagram Mitarbeiter 3">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm9 2h-9A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.5-.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/></svg>
+              </a>
+            </div>
+            <p class="muted" style="margin:10px 0 0;">
+              Saubere Konturen, exakte Bartlinien, klassisches Barber-Finish. Details machen den Unterschied.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANFAHRT (Maps oder Alternative) -->
+  <section class="section" id="kontakt">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Anfahrt</h2>
+        <p>Google Maps Embed (optional) und Route-Link als Alternative.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Adresse</h3>
+          <p class="muted" style="margin:0 0 10px;">Trag hier eure echte Adresse ein:</p>
+          <p style="margin:0;">
+            <strong>STRAßE + NR</strong><br>
+            <strong>PLZ ORT</strong>
+          </p>
+
+          <p class="muted" style="margin:12px 0 0;">
+            <a href="https://www.google.com/maps" target="_blank" rel="noopener">→ Route in Google Maps öffnen</a>
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Karte</h3>
+          <div class="map">
+            <iframe
+              title="Google Maps"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="">
+            </iframe>
+          </div>
+          <p class="muted" style="margin:10px 0 0;">
+            Wenn du keinen Embed willst: src leer lassen und nur den Route-Link nutzen.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer">
+        © <span id="year"></span> CUT BY JODY. Alle Preise inkl. MwSt. Änderungen vorbehalten.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
