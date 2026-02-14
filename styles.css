@@ -305,20 +305,24 @@ a{ color: inherit; }
 }
 .btn-primary {
   display: inline-block;
-  margin-top: 28px;
-  padding: 16px 34px;
-  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-  color: #fff;
+  margin-top: 40px;
+  padding: 18px 42px;
+  background: linear-gradient(145deg, #000000, #1c1c1c);
+  color: #ffffff;
   text-decoration: none;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.6px;
+  border-radius: 14px;
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(135deg, #111 0%, #000 100%);
+  box-shadow: 
+    0 14px 30px rgba(0, 0, 0, 0.25),
+    0 4px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(145deg, #111111, #000000);
 }
